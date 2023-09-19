@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <ros2_control name="VESCLeft" type="actuator">
+    <hardware>
+      <plugin>vesc_hw_interface/VescHwInterface</plugin>
+      <param name="port">/dev/ttyACM0</param>
+      <param name="gear_ratio">1</param>
+      <param name="command_mode">velocity</param>
+      <param name="joint_type">continuous</param>
+      <param name="num_hall_sensors">3</param>
+      <param name="num_rotor_poles">20</param>
+      <param name="motor/Kp">0.1</param>
+      <param name="motor/Ki">0.01</param>
+      <param name="motor/Kd">0.02</param>
+      <param name="motor/i_clamp">1.0</param>
+      <param name="motor/duty_limiter">1.0</param>
+      <param name="motor/antiwindup">true</param>
+      <param name="motor/control_rate">50</param>
+      <param name="motor/enable_smooth_diff">true</param>
+      <param name="motor/smooth_diff/max_sample_sec">0.2</param>
+      <param name="motor/smooth_diff/max_smooth_step">10</param>
+   
+      
+    </hardware>
+    <joint name="left_wheel_joint">
+      <command_interface name="velocity">
+        <param name="min">-5</param>
+        <param name="max">5</param>
+      </command_interface>
+
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+
+
+  </ros2_control>
+
+  <ros2_control name="VESCRight" type="actuator">
+    <hardware>
+      <plugin>vesc_hw_interface/VescHwInterface</plugin>
+      <param name="port">/dev/ttyACM1</param>
+      <param name="gear_ratio">1</param>
+      <param name="command_mode">velocity</param>
+      <param name="joint_type">continuous</param>
+      <param name="num_hall_sensors">3</param>
+      <param name="num_rotor_poles">20</param>
+      <param name="motor/Kp">0.1</param>
+      <param name="motor/Ki">0.01</param>
+      <param name="motor/Kd">0.02</param>
+      <param name="motor/i_clamp">1.0</param>
+      <param name="motor/duty_limiter">1.0</param>
+      <param name="motor/antiwindup">true</param>
+      <param name="motor/control_rate">50</param>
+      <param name="motor/enable_smooth_diff">true</param>
+      <param name="motor/smooth_diff/max_sample_sec">0.2</param>
+      <param name="motor/smooth_diff/max_smooth_step">10</param>
+      
+    </hardware>
+    
+    <joint name="right_wheel_joint">
+      <command_interface name="velocity">
+        <param name="min">-5</param>
+        <param name="max">5</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+
+    </joint>
+
+
+
+  </ros2_control>
+
+
+
+
+</robot>

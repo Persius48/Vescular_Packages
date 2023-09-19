@@ -1,0 +1,25 @@
+<launch>
+    <let name="urdf_path" 
+         value="$(find-pkg-share vescular_description)/urdf/vescular.urdf.xacro" />
+
+     <let name = "rviz_config_path" 
+         value = "$(find-pkg-share vescular_bringup)/rviz/vescular.rviz" />
+
+    <node pkg = "robot_state_publisher" exec = "robot_state_publisher">
+          <param name = "robot_description"
+               value = "$(command 'xacro $(var urdf_path)')"/>
+          <param name = "use_sim_time" value = "false"/>
+    </node>
+
+    <node pkg = "odometry_estimator" exec = "odometry_estimation_new">
+        <param name = "publish_tf" value = "false"/>
+
+    </node>
+
+    <node pkg = "joint_state_publisher_gui" exec = "joint_state_publisher_gui"/>
+
+    
+    <node pkg = "rviz2" exec = "rviz2" output = "screen" args = "-d $(var rviz_config_path)" />
+
+
+</launch>
